@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg" style="background-color: #6610f2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: white">MLTFapp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{request.url_root}}" style="color: white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{request.url_root}}login" style="color: white">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{request.url_root}}impact" style="color: white">Our Impact</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</head>
+ <body>
+    <div class="container-sm">
+        <br>
+        <br>
+        <br>
+        <h1 class="display-3 text-center">What do you want to do?</h1>
+        <br>
+        <br>
+        <div class="col-md-8 offset-sm-2">
+            <div class="d-grid">
+                <button class="btn btn-warning"type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample_tableactions" aria-expanded="false" aria-controls="collapseExample_tableactions">
+                    Update Database 
+                </button>
+            </div>
+            <br>
+            <br>
+            <div class="collapse" id="collapseExample_tableactions">
+            <div class="text-center">
+                <p class="mb-0 text-center">Add New</p>
+                <br>
+                <div class="mb-3">
+                    <a class="btn btn-outline-secondary btn-block" href="updateImplementor" role="button" style="width:50%;">Implementor</a>
+                </div>
+                <div class="mb-3">
+                    <a class="btn btn-outline-secondary btn-block" href="updatePOC" role="button" style="width:50%;">Implementor POC</a>
+                </div>
+                <div class="mb-3">
+                    <a class="btn btn-outline-secondary btn-block" href="updateLOC" role="button" style="width:50%;">Location</a>
+                </div>                           
+                <div class="mb-3">
+                <a class="btn btn-outline-secondary" href="updateFacility" role="button" style="width:50%;">Facility</a>
+                </div>
+                <div class="mb-3">
+                <p class="mb-0 text-center">Update Existing</p>
+                </div>
+                <div class="mb-3">
+                <a class="btn btn-outline-secondary" href="UPDATE_POC_INFO" role="button" style="width:50%;">Point of Contacts</a>
+                </div>
+                <div class="mb-3">
+                <a class="btn btn-outline-secondary" href="UPDATE_PROJPOC_INFO" role="button" style="width:50%;">Project End Date</a>
+                </div>
+                <p class="mb-0 text-center">Delete</p>
+                <br>
+                <div class="mb-3">
+                <a class="btn btn-outline-secondary" href="DELETE_sec" role="button" style="width:50%;">Sector</a>
+                </div>
+                </div>
+            </div>
+            <br>
+            <div class="d-grid">
+                <button class="btn btn-warning"type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Create Project 
+                </button>
+            </div>
+            <br>
+            <br>
+            <div class="collapse" id="collapseExample">
+                <form action="next" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Implementor</label>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <select class="form-control" id="impl_opts" name="impl_name">
+                            {%for i in range(0,len_impl)%}
+                            <option type="submit" name="impl_selected">{{impl_abbrev[i]}}</option>
+                            {%endfor%}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-warning" formaction="/updateImplementor" formmethod="POST">Not listed? Add Implementor</button>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Project Name</label>
+                        <input type="text" class="form-control" id="proj_name" name="project_name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Start Date</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">End Date</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Sector</label>
+                        <br>
+                        <div class="form-radio">
+                            {%for i in range(0,len_sec)%}
+                            <input class="form-radio-input" type="radio" id="sec_id" name="sec_radio" value="{{sects[i]}}">
+                            <label class="form-radio-label" name="sec_label">{{sects[i]}}</label><br>
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Program</label>
+                        <br>
+                        <div class="form-radio">
+                            {%for i in range(0,len_prog)%}
+                            <input class="form-radio-input" type="radio" id="prog_id" name="prog_radio" value="{{prog[i]}}">
+                            <label class="form-radio-label" name="prog_label">{{prog[i]}}</label><br>
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Location</label>
+                        <div class="form-check">
+                            {%for i in range(0,len_locs)%}
+                            <input class="form-check-input" type="checkbox" value="{{locs[i]}}" id="loc_id" name="loc">
+                            <label class="form-check-label" name="loc_label">{{locs[i]}}</label>
+                            <br>
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-warning" formaction="/updateLOC" formmethod="POST">Not listed? Add Location</button>
+                    </div>
+                    <fieldset disabled>
+                        <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label" style="font-weight: bold;">Staff ID</label>
+                        <input type="text" id="disabledTextInput" class="form-control" value={{staffID}}>
+                        </div>
+                    </fieldset>
+                    <div class="mb-3">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-warning">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <div class="d-grid">
+                <button class="btn btn-warning"type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample_analysis" aria-expanded="false" aria-controls="collapseExample_analysis">
+                    Project Analysis
+                </button>
+            </div>
+            <br>
+            <br>
+            <div class="collapse" id="collapseExample_analysis">
+                <div class="text-center">
+                    <p class="mb-0 text-center">Track Project</p>
+                    <br>
+                <div class="mb-3">
+                    <a class="btn btn-outline-secondary btn-block" href="impact" role="button" style="width:50%;">Reports</a>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <a class="btn btn-outline-secondary btn-block" href="progress" role="button" style="width:50%;">Progress</a>
+                </div>
+                </div>
+            </div>
+            <br>
+            <div class="d-grid">
+                <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReport_Download" aria-expanded="false" aria-controls="collapseReport_Download">
+                    Download Report 
+                </button>
+            </div>
+            <br>
+            <br>
+            <div class="collapse" id="collapseReport_Download">
+                <form action="downloadReport" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Project</label>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <select class="form-control" id="proj_opts" name="project_name">
+                                <option type="submit" name="project_selected">select project</option>
+                                {%for i in range(0,len_all_proj)%}
+                                <option type="submit" name="poc_proj_selected">{{all_proj[i]}}</option>
+                                {%endfor%}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                    <div class="mb-3">
+                            <button type="submit" name="getDates" value="getReportDatesforProject" class="btn btn-outline-warning" formaction="/getdates_download" formmethod="POST">get project report dates</button>
+                    </div>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Report Date</label>
+                        <select class="form-control" id="proj_opts" name="down_date">
+                            <option type="submit" name="date_selected">select date</option>
+                            {%for i in range(0,len_end_d)%}
+                            <option type="submit" name="date_selected">{{end_d[i]}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                    <div class="text-center">
+                    <div class="mb-3">
+                        <button type="submit" value="Download" class="btn btn-outline-warning">Download</button>
+                    </div>
+                    </div> -->
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+  </body>
+</html>

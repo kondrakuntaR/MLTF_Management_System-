@@ -1,0 +1,61 @@
+<html>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Implementors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg" style="background-color: #6610f2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: white">MLTFapp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{request.url_root}}" style="color: white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{request.url_root}}login" style="color: white">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{request.url_root}}impact" style="color: white">Our Impact</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+    </head>
+    <body>
+        <div class="container-sm">
+            <br>
+            <br>
+            <br>
+            <div class="col-md-8 offset-sm-2">
+                <!-- <form action="checks", method="post"> -->
+                <form action="impladded", method="post">
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Implementor Type</label>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <select class="form-control" id="impl_opts" name="impl_type">
+                            {%for i in range(0,len_impltype)%}
+                            <option name="impl_type_selected">{{impl_types[i]}}</option>
+                            {%endfor%}
+                        </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Implementor Name</label>
+                        <input type="text" class="form-control" id="new_impl" name="new_impl_name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: bold;">Implementor Abbreivation</label>
+                        <input type="text" class="form-control" id="new_impl_abbrev" name="new_impl_abbrev">
+                    </div>
+                    <button type="submit" class="btn btn-outline-warning" style="opacity: 0.8;">Add New Implementor</button>
+                    <!-- formaction="/addedsuccessfully" formmethod="POST" -->
+                </form>
+            </div>
+        </div>
+    </body>
+</html> 
